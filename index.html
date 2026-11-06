@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#174a3c">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Точка старта — приложение для веломаршрутов Петербурга и Ленобласти. Сайт разработчика: приложение в RuStore, документы и поддержка.">
+  <link rel="canonical" href="https://chuhones.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23174a3c'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f6f5ef' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f6f5ef'/%3E%3C/svg%3E">
+  <title>Точка старта — сайт разработчика</title>
+  <style>
+    :root{--bg:#f6f5ef;--ink:#20372e;--muted:#59685e;--pine:#174a3c;--line:#d9dfd5;--soft:#eaf0e5;--white:#fffefa}
+    *{box-sizing:border-box}
+    html{scroll-padding-top:24px}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
+    a{color:var(--pine);text-underline-offset:.2em}
+    a:hover{text-decoration-thickness:2px}
+    a:focus-visible{outline:3px solid #926019;outline-offset:5px;border-radius:4px}
+    .wrap{width:min(1080px,calc(100% - 48px));margin-inline:auto}
+    .skip{position:absolute;left:16px;top:-100px;padding:12px;background:var(--white);z-index:5}
+    .skip:focus{top:16px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:24px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;font-weight:750;line-height:1.3}
+    .brand small{display:block;margin-top:4px;color:var(--muted);font-size:12px;font-weight:500}
+    .mark{width:38px;height:38px;border:2px solid var(--pine);border-radius:50%;position:relative;flex:none}
+    .mark::after{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--pine)}
+    nav{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}
+    nav a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+    .hero{display:grid;grid-template-columns:1.35fr 1fr;align-items:center;gap:56px;padding-block:64px 48px}
+    .eyebrow{margin:0 0 16px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    h1{margin:0;font-size:clamp(40px,6vw,66px);line-height:1.06;letter-spacing:-.045em;font-weight:750}
+    .lead{margin:20px 0 12px;max-width:520px;font-size:clamp(20px,2.6vw,25px);line-height:1.45;letter-spacing:-.02em}
+    .intro{max-width:510px;margin:0;color:var(--muted)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:11px 20px;border:1px solid var(--pine);border-radius:12px;text-decoration:none;font-size:15px;font-weight:650}
+    .primary{background:var(--pine);color:var(--white)}
+    .primary:hover{background:#103d31}
+    .secondary:hover{background:var(--soft)}
+    .route-note{padding:28px;background:var(--soft);border:1px solid var(--line);border-radius:24px}
+    .route-note h2{font-size:23px;line-height:1.3;margin:0 0 24px;letter-spacing:-.025em}
+    .steps{margin:0;padding:0;list-style:none;counter-reset:step}
+    .steps li{position:relative;counter-increment:step;padding-left:48px;padding-bottom:24px}
+    .steps li::before{content:"0" counter(step);position:absolute;left:0;top:0;display:grid;place-items:center;width:32px;height:32px;border:1px solid #b8c9ba;border-radius:50%;color:var(--pine);font-size:12px;font-weight:700;background:var(--bg)}
+    .steps li:last-child{padding-bottom:0}
+    .steps strong{display:block;font-weight:650}
+    .steps p{margin:4px 0 0;color:var(--muted);font-size:14px;line-height:1.55}
+    section{scroll-margin-top:24px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:18px}
+    .section-head h2{font-size:25px;letter-spacing:-.025em;margin:0}
+    .section-head p{margin:0;color:var(--muted);font-size:14px}
+    .documents{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .doc{display:block;padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--white);text-decoration:none;color:var(--ink)}
+    .doc:hover{border-color:var(--pine);background:#f1f5ed}
+    .doc-title{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;font-size:18px;font-weight:650;line-height:1.4}
+    .doc p{margin:10px 0 0;color:var(--muted);font-size:14px;max-width:370px}
+    .support{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .support h2{font-size:23px;letter-spacing:-.025em;margin:0 0 12px}
+    .support p{margin:6px 0;color:var(--muted);font-size:14px}
+    address{font-style:normal}
+    .developer{font-weight:650}
+    .email{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere;word-break:break-word}
+    .support-copy{align-self:center}
+    .support-copy strong{font-weight:650;color:var(--ink)}
+    footer{padding:24px 0 32px;color:var(--muted);font-size:12px}
+    footer p{margin:0 0 8px;max-width:870px}
+    .identifier{font-family:ui-monospace,monospace;font-size:12px;overflow-wrap:anywhere}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;gap:28px;padding-block:36px}.route-note{padding:24px}.documents,.support{grid-template-columns:1fr}.support{gap:16px;margin-top:28px}.section-head{display:block}.section-head p{margin-top:4px}}
+    @media(max-width:480px){.wrap{width:calc(100% - 32px)}header{align-items:flex-start;flex-direction:column;gap:8px;padding-block:18px 10px}nav{gap:24px}.actions{flex-direction:column}.button{width:100%}.doc{padding:20px}.lead{font-size:21px}}
+    @media print{body{background:white}nav,.actions,.skip{display:none}.hero{padding-block:24px;gap:24px}a{color:inherit}.route-note,.doc{break-inside:avoid}footer{font-size:10px}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержанию</a>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="https://chuhones.github.io/" aria-label="Точка старта — главная страница">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Точка старта<small>Сайт разработчика приложения</small></span>
+      </a>
+      <nav aria-label="Основная навигация">
+        <a href="#documents">Документы</a>
+        <a href="#support">Поддержка</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="app-title">
+        <div>
+          <p class="eyebrow">Санкт-Петербург и Ленобласть · Android</p>
+          <h1 id="app-title">Точка старта</h1>
+          <p class="lead">Веломаршруты рядом.<br>Для ваших новых впечатлений.</p>
+          <p class="intro">Выбирайте маршрут, изучайте трек и полезные места по пути. Записывайте свои поездки и возвращайтесь к ним в приложении.</p>
+          <div class="actions">
+            <a class="button primary" href="https://www.rustore.ru/catalog/app/ru.artiukov.startpoint">Открыть в RuStore <span aria-hidden="true">↗</span></a>
+            <a class="button secondary" href="#documents">Документы приложения</a>
+          </div>
+        </div>
+        <aside class="route-note" aria-labelledby="features-title">
+          <p class="eyebrow">От идеи до поездки</p>
+          <h2 id="features-title">Выберите свой путь</h2>
+          <ol class="steps">
+            <li><strong>Найдите маршрут</strong><p>Дистанция, сложность, покрытие и способы добраться до старта.</p></li>
+            <li><strong>Посмотрите карту</strong><p>Трек, старт, финиш и точки интереса на маршруте.</p></li>
+            <li><strong>Сохраните поездку</strong><p>Запись активности и просмотр результата в разделе «Мои поездки».</p></li>
+          </ol>
+        </aside>
+      </section>
+      <section id="documents" aria-labelledby="documents-title">
+        <div class="section-head">
+          <h2 id="documents-title">Документы приложения</h2>
+          <p>Условия использования и сведения об обработке данных</p>
+        </div>
+        <div class="documents">
+          <a class="doc" href="https://chuhones.github.io/ru.artiukov.startpoint-docs/privacy/">
+            <span class="doc-title">Политика конфиденциальности <span aria-hidden="true">↗</span></span>
+            <p>Какие данные используются, где они хранятся и как обратиться по вопросам их обработки.</p>
+          </a>
+          <a class="doc" href="https://chuhones.github.io/ru.artiukov.startpoint-docs/terms/">
+            <span class="doc-title">Пользовательское соглашение <span aria-hidden="true">↗</span></span>
+            <p>Условия использования приложения, работа с маршрутами, запись активности и реклама.</p>
+          </a>
+        </div>
+      </section>
+      <section class="support" id="support" aria-labelledby="support-title">
+        <div>
+          <h2 id="support-title">Разработчик и поддержка</h2>
+          <address>
+            <div class="developer">Артюков Александр Евгеньевич</div>
+            <a class="email" href="mailto:chuhones063@yandex.ru">chuhones063@yandex.ru</a>
+          </address>
+        </div>
+        <div class="support-copy">
+          <p><strong>Есть вопрос или нашли ошибку?</strong></p>
+          <p>Укажите версию приложения, модель телефона и опишите, что произошло. Не прикладывайте полный трек поездки или личные сведения, если они не нужны для решения вопроса.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>«Точка старта - веломаршруты Ленобласти» · <span class="identifier">ru.artiukov.startpoint</span></p>
+      <p>На этой странице нет рекламных блоков, собственных счётчиков или форм сбора данных. Сайт размещён на GitHub Pages: GitHub регистрирует IP-адрес посетителя в целях безопасности. Подробнее — в <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">политике конфиденциальности GitHub</a>.</p>
+    </footer>
+  </div>
+</body>
+</html>
